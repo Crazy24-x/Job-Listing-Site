@@ -1,47 +1,70 @@
 // src/services/api.js
-// This is a mock API service for demonstration
+const mockUsers = [
+    {
+        id: 1,
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'test@example.com',
+        password: 'password123',
+        age: 30,
+        city: 'New York',
+        region: 'NY',
+        country: 'USA',
+        address: '123 Main St',
+        phoneNumber: '555-123-4567',
+        token: 'mock-token-123',
+    },
+];
+
 const mockJobs = [
     {
         id: 1,
-        title: 'Frontend Developer',
+        title: 'Frontend Developer (React)',
         company: {
             name: 'TechCorp',
             logo: '/images/techcorp.png',
         },
         location: 'San Francisco, CA',
         salary: '$90,000 - $120,000',
-        description: 'We are looking for a skilled Frontend Developer to join our team...',
-        requirements: ['3+ years of React experience', 'Strong CSS skills', 'Experience with Redux'],
+        description: 'We are looking for a skilled Frontend Developer...',
+        requirements: ['3+ years of React', 'CSS expertise'],
         postedTime: '2 days ago',
-        tags: ['React', 'JavaScript', 'CSS', 'Frontend'],
+        tags: ['React', 'JavaScript', 'Frontend'],
         type: 'full-time',
     },
-    // Add more mock jobs here...
-];
-
-const mockUsers = [
     {
-        id: 1,
-        email: 'test@example.com',
-        password: 'password123', // In a real app, never store plain text passwords!
-        name: 'Test User',
-        token: 'mock-token-123',
+        id: 2,
+        title: 'UX Designer',
+        company: {
+            name: 'DesignHub',
+            logo: '/images/designhub.png',
+        },
+        location: 'Remote',
+        salary: '$80,000 - $100,000',
+        description: 'Join our design team to create beautiful interfaces...',
+        requirements: ['Figma proficiency', 'Portfolio required'],
+        postedTime: '1 week ago',
+        tags: ['UI/UX', 'Figma', 'Design'],
+        type: 'full-time',
     },
+    {
+        id: 3,
+        title: 'Backend Developer',
+        company: {
+            name: 'DataSystems',
+            logo: '/images/datasystems.png'
+        },
+        location: 'Chicago, IL',
+        salary: '$110,000 - $140,000',
+        tags: ['Node.js', 'Python', 'AWS'],
+        type: 'full-time'
+    }
+    // Add more mock jobs as needed
 ];
 
 const api = {
-    get: async (url) => {
-        // Simulate network delay
-        await new Promise((resolve) => setTimeout(resolve, 500));
-
-        if (url === '/jobs') {
-            return { data: mockJobs };
-        }
-
-        throw new Error('Endpoint not found');
-    },
+    // Auth endpoints
     post: async (url, data) => {
-        // Simulate network delay
         await new Promise((resolve) => setTimeout(resolve, 500));
 
         if (url === '/auth/login') {
@@ -49,23 +72,59 @@ const api = {
                 (u) => u.email === data.email && u.password === data.password
             );
             if (user) {
-                return { data: { user: { id: user.id, email: user.email, name: user.name }, token: user.token } };
+                return {
+                    data: {
+                        user: {
+                            id: user.id,
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            email: user.email,
+                        },
+                        token: user.token
+                    }
+                };
             }
-            throw new Error('Invalid credentials');
+            throw { response: { data: { message: 'Invalid credentials' } } };
         }
 
         if (url === '/auth/register') {
+            const emailExists = mockUsers.some(u => u.email === data.email);
+            if (emailExists) {
+                throw { response: { data: { message: 'Email already exists' } } };
+            }
+
             const newUser = {
                 id: mockUsers.length + 1,
                 ...data,
                 token: `mock-token-${Math.random().toString(36).substr(2)}`,
             };
             mockUsers.push(newUser);
-            return { data: { user: { id: newUser.id, email: newUser.email, name: newUser.name }, token: newUser.token } };
+            return {
+                data: {
+                    user: {
+                        id: newUser.id,
+                        firstName: newUser.firstName,
+                        lastName: newUser.lastName,
+                        email: newUser.email,
+                    },
+                    token: newUser.token
+                }
+            };
+        }
+
+        throw { response: { data: { message: 'Endpoint not found' } } };
+    },
+
+    // Jobs endpoints
+    get: async (url) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        if (url === '/jobs') {
+            return { data: mockJobs };
         }
 
         throw new Error('Endpoint not found');
-    },
+    }
 };
 
 export default api;
