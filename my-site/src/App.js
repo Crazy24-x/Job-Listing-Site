@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import './styles/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Jobs from "./pages/Jobs";
+import Companies from "./pages/Companies";
 
 function App() {
     return (
@@ -16,6 +18,9 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/jobs" element={<Jobs />} />
+                    <Route path="/companies" element={<Companies />} />
                     {/* Add other routes here */}
                 </Routes>
             </BrowserRouter>

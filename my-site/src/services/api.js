@@ -22,7 +22,7 @@ const mockJobs = [
         title: 'Frontend Developer (React)',
         company: {
             name: 'TechCorp',
-            logo: '/images/techcorp.png',
+            logo: 'images.png',
         },
         location: 'San Francisco, CA',
         salary: '$90,000 - $120,000',
@@ -37,7 +37,7 @@ const mockJobs = [
         title: 'UX Designer',
         company: {
             name: 'DesignHub',
-            logo: '/images/designhub.png',
+            logo: 'images2.jpeg',
         },
         location: 'Remote',
         salary: '$80,000 - $100,000',
@@ -52,12 +52,80 @@ const mockJobs = [
         title: 'Backend Developer',
         company: {
             name: 'DataSystems',
-            logo: '/images/datasystems.png'
+            logo: 'images3.avif'
         },
         location: 'Chicago, IL',
         salary: '$110,000 - $140,000',
         tags: ['Node.js', 'Python', 'AWS'],
         type: 'full-time'
+    },
+    {
+        id: 6,
+        title: 'Registered Nurse',
+        company: {
+            name: 'City Hospital',
+            logo: '/images/hospital.png',
+            industry: 'Healthcare'
+        },
+        location: 'New York, NY',
+        salary: '$75,000 - $95,000',
+        description: 'Provide patient care in hospital setting...',
+        requirements: ['RN License', 'BLS Certification'],
+        postedTime: '3 days ago',
+        tags: ['Healthcare', 'Nursing'],
+        type: 'Full-time'
+    },
+    {
+        id: 7,
+        title: 'Financial Analyst',
+        company: {
+            name: 'Global Finance',
+            logo: '/images/finance.png',
+            industry: 'Finance'
+        },
+        location: 'Chicago, IL',
+        salary: '$85,000 - $110,000',
+        tags: ['Finance', 'Accounting', 'Hybrid'],
+        postedTime: '1 week ago'
+    },
+    {
+        id: 8,
+        title: 'Marketing Manager',
+        company: {
+            name: 'AdvertisePro',
+            logo: '/images/marketing.png',
+            industry: 'Marketing'
+        },
+        location: 'Remote',
+        salary: '$90,000 - $120,000',
+        tags: ['Marketing', 'Digital', 'Remote'],
+        postedTime: '2 days ago'
+    },
+    {
+        id: 9,
+        title: 'Construction Supervisor',
+        company: {
+            name: 'BuildRight Inc',
+            logo: '/images/construction.png',
+            industry: 'Construction'
+        },
+        location: 'Houston, TX',
+        salary: '$70,000 - $90,000',
+        tags: ['Construction', 'Management'],
+        postedTime: '5 days ago'
+    },
+    {
+        id: 10,
+        title: 'Hotel Manager',
+        company: {
+            name: 'Grand Hotels',
+            logo: '/images/hotel.png',
+            industry: 'Hospitality'
+        },
+        location: 'Miami, FL',
+        salary: '$60,000 - $80,000',
+        tags: ['Hospitality', 'Management'],
+        postedTime: '1 day ago'
     }
     // Add more mock jobs as needed
 ];

@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchJobs } from '../store/slices/jobsSlice';
@@ -70,14 +69,7 @@ const Home = () => {
                     <div className="container">
                         <h2 className="h3 fw-bold mb-4">Browse by Category</h2>
                         <div className="row">
-                            {[
-                                'Technology',
-                                'Healthcare',
-                                'Finance',
-                                'Education',
-                                'Marketing',
-                                'Design',
-                            ].map((category, index) => (
+                            {['Technology', 'Healthcare', 'Finance', 'Education', 'Marketing', 'Design'].map((category, index) => (
                                 <div className="col-6 col-md-4 col-lg-2 mb-3" key={index}>
                                     <a
                                         href={`/jobs?category=${category.toLowerCase()}`}
